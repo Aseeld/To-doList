@@ -1,33 +1,19 @@
 from django import forms
 from .models import Note
 
-class AddNoteForm(forms.Form):
-    
+class NoteForm(forms.ModelForm):
+   
     class Meta:     
         model =Note
-        fields = ("title", "description", "due_date")
-
+        fields = ("title", "description", "due_date", "type")
+        # widgets = {
+        # 'title': forms.TextInput(attrs={'class': 'form-control'}),
+        # }
     def __init__(self, *args, **kwargs): 
-        super().__init__(*args, **kwargs) 
-        self.fields['title'].widget.attrs.update({ 
-            'class': 'input is-success is-rounded', 
-            'required':'', 
-            'name':'title', 
-            'id':'title', 
-            'type':'text',     
-            }) 
-        self.fields['description'].widget.attrs.update({ 
-            'class': 'input is-success is-rounded', 
-            'required':'', 
-            'name':'description', 
-            'id':'description', 
-            'type':'text',  
-            }) 
-        self.fields['due_date'].widget.attrs.update({ 
-            'class': 'input is-success is-rounded', 
-            'required':'', 
-            'name':'due_date', 
-            'id':'due_date', 
-            'type':'date',  
-            }) 
+        super(NoteForm, self).__init__(*args, **kwargs) 
+        self.fields['title'].widget.attrs.update({'class' : 'form-control'})
+        self.fields['description'].widget.attrs.update({'class' : 'form-control'})
+        self.fields['due_date'].widget.attrs.update({'class' : 'form-control'})
+        self.fields['type'].widget.attrs.update({'class' : 'form-control'})
+
        

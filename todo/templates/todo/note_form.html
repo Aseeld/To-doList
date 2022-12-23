@@ -3,23 +3,14 @@
 
     <div class="row h-100 justify-content-center align-items-center">
         <div class="col-10 col-md-8 col-lg-6">
-            <h4 class="mb-4 ">Add Note</h4>
-            <form method="post" class="form-example">
+            <h4 class="mb-4 text-center">{{title}}</h4>
+            <form method="post" >
                 {% csrf_token %}
-                {{ form.as_p }}
-                <input  type="text" name="title" class="form-control" placeholder="Title">   
-                <input  type="text" name="description" class="form-control" placeholder="Description">
-                <p>
-                    <label for="id_due_date">Due date:</label>
-                    <input type="text" name="due_date"  required="" id="id_due_date" class="form-control" >
-                    <input type="hidden" name="initial-due_date"  id="initial-id_due_date">
-                    
-                    
-                  </p>
+                {{ form.as_p }}            
 
                 <input value="Save" type="submit" class="btn btn-primary btn-customized mt-4" >
                 <input value="Cancel" type="button" class="btn btn-primary btn-customized mt-4" 
-                onclick="location.href='{% url "type" todo_type.id %}';">
+                onclick="location.href='{% url "type" List_details.id %}';" style="float: right;">
             </form>
         </div>
     </div>

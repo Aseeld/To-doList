@@ -7,28 +7,35 @@
    
 <div class="mb-2 text-center">
     
-     <a href='{% url 'note-add'  1 %}' class="btn btn-primary " >Add new note</a>  
+     <a href='{% url 'note-add' List_details.id %}' class="btn btn-primary " >Add new note</a>  
      <a href='{% url 'default'  %}' class="btn btn-primary " >Back</a>  
      
-    {% comment %} <input
-    value="Add a new item"
-    type="button"
-    onclick="location.href='{% url "note-add" list_details.id %}'"
-    />  {% endcomment %}
 </div>
 <div class="list-group">
-    {% for todo in object_list %}
-    <a href='#' class="list-group-item list-group-item-action flex-column align-items-start ">
-        <div class="d-flex w-100 justify-content-between">
-            <h5 class="mb-1"> {{ todo.title }}</h5>
-          
-            <small>{{todo.created_date |timesince}} ago</small>
-        </div>
-        <p class="mb-1" style="color:#7e7e04;"> {{ todo.description}} </p>
-        <small style="color:#9d9d0c;"> {{ todo.due_date|timeuntil }} left.</small>
-    </a>  
-    {% empty %}
-        <p class="mb-1" >There are no notes.</p>
-    {% endfor %}         
-  </div>
+    <table width="100%" >
+        {% for note in object_list %}
+        <tr>
+            <td width="90%">
+                <a href='{% url 'note-update' List_details.id note.id %}' class="list-group-item list-group-item-action flex-column align-items-start ">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1"> {{ note.title }}</h5>
+                    
+                        <small>{{note.created_date |timesince}} ago</small>
+                    </div>
+                    <p class="mb-1" style="color:#7e7e04;"> {{ note.description}} </p>
+                    <small style="color:#9d9d0c;"> {{ note.due_date|timeuntil }} left.</small>
+                </a>  
+            </td>
+            <td tyle="text-align: center; vertical-align: middle;"width="5%">
+                <input value="Delete" type="button" class="btn btn-primary" 
+                onclick="location.href= '{% url 'note-delete' List_details.id note.id %}'"  />
+            </td>
+        {% empty %}
+            <td >
+                <p class="mb-1" >There are no notes.</p>
+            </td>
+        </tr>
+        {% endfor %}     
+    </table>    
+</div>
 {%endblock%}
