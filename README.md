@@ -38,6 +38,6 @@
 
 
 ### Edit note page
-![](screenshots/Dashboard.png)
+![](screenshots/note_edit.png)
 
 
